@@ -1,4 +1,4 @@
-from flask import Flask, render_template ,request
+from flask import Flask, render_template ,request, send_from_directory
 import time
 import smtplib
 import os
@@ -18,7 +18,7 @@ def mail(email, pssd, mssg):
 
 @app.route('/')
 def home_page():
-    return render_template("index.html")
+    return send_from_directory('.', 'index.html')
 
 
 def cleanMsg(data):
@@ -45,7 +45,7 @@ def form():
 
 @app.errorhandler(404)  
 def not_found(e): 
-  return render_template("404.html") 
+  return send_from_directory('.', '404.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
